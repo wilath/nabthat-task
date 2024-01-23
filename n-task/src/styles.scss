@@ -1,1 +1,14 @@
-/* You can add global styles to this file, and also import other style files */
+:root{
+    --light-grey: rgb(42,45,54);
+    --dark-grey: rgb(11,12,16);
+    --html-grey: rgb(48,48,48);
+    --my-orange: rgb(232,131,1)
+}
+body{
+    background-color: var(--light-grey);
+    margin: 0;
+    padding: 0;
+    color: white;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: normal;
+}
