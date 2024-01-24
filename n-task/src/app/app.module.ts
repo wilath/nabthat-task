@@ -7,6 +7,8 @@ import { SwitchesComponent } from './switches/switches.component';
 import { OutputComponent } from './output/output.component';
 import { FormsModule } from '@angular/forms';
 
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -19,5 +21,6 @@ import { FormsModule } from '@angular/forms';
     BrowserModule,
     FormsModule],
   bootstrap: [AppComponent],
+  
 })
 export class AppModule {}

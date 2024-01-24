@@ -1,6 +1,6 @@
 <div class="wrapper">
   <header>
-    <div class="logo"><i class="fa-brands fa-html5"></i></div>
+    <a style="color:white"href="/"><div class="logo"><i class="fa-brands fa-html5"></i></div></a>
     <div class="header-text">
       <h2>Zadanie <span>rekrutacyjne</span></h2>
       <h2>Daniel Redzyński</h2>
@@ -9,13 +9,15 @@
 
   <section class="title">
     <h1>Nagłówek H1</h1>
-    <hr />
+    <hr/>
   </section>
   <section class="main">
     <app-radios (radio)="receiveRadio($event)"></app-radios>
     <app-switches (switch)="receiveSwitch($event)"></app-switches>
-    <app-output></app-output>
+    <app-output [data]="output"></app-output>
   </section>
 
-  <footer></footer>
+  <footer>
+    <button (click)="resetData()">Pokaż <i class="fa-solid fa-angle-down"></i></button>
+  </footer>
 </div>
