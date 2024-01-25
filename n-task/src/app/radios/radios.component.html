@@ -1,16 +1,17 @@
 <h3>BLOK PIERWSZY</h3>
 <form>
-  <label for="option0" class="radio-button">
+ 
+  <label tabindex="0" (keydown.enter)="onEnterKey($event, 'option0')"  for="option0" class="radio-button">
     <input
       type="radio"
       value="option0"
       id="option0"
       name="option"
       (change)="onRadioChange($event)"
-    />Opcja pierwsza<span></span></label
-  >
+    />Opcja pierwsza<span></span></label>
 
-  <label for="option1" class="radio-button">
+
+  <label tabindex="0" (keydown.enter)="onEnterKey($event, 'option1')"  for="option1" class="radio-button">
     <input
       type="radio"
       value="option1"
@@ -20,7 +21,7 @@
     />Opcja druga<span></span></label
   >
 
-  <label for="option2" class="radio-button">
+  <label tabindex="0" (keydown.enter)="onEnterKey($event, 'option2')" for="option2" class="radio-button">
     <input
       type="radio"
       value="option2"

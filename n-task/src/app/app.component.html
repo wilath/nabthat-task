@@ -1,15 +1,24 @@
 <div class="wrapper">
+  
   <header>
-    <a style="color:white"href="/"><div class="logo"><i class="fa-brands fa-html5"></i></div></a>
+    <a style="color: white" href="/"
+      ><div class="logo"><i class="fa-brands fa-html5"></i></div
+    ></a>
     <div class="header-text">
-      <h2>Zadanie <span>rekrutacyjne</span></h2>
-      <h2>Daniel Redzyński</h2>
+      <h2 id="task">Zadanie <span>rekrutacyjne</span></h2>
+      <h2 id="name">Daniel Redzyński</h2>
     </div>
+    <button id="goEdit" (click)="showEdit()">
+      {{ isEdit ? "Close" : "Edit" }}
+    </button>
   </header>
+  <section class="edit">
+    <app-edit (change)="handleChange($event)" ></app-edit>
+  </section>
 
   <section class="title">
     <h1>Nagłówek H1</h1>
-    <hr/>
+    <hr />
   </section>
   <section class="main">
     <app-radios (radio)="receiveRadio($event)"></app-radios>
@@ -18,6 +27,26 @@
   </section>
 
   <footer>
-    <button (click)="resetData()">Pokaż <i class="fa-solid fa-angle-down"></i></button>
+    <div class="awesome">
+      <span>CSS</span>
+      <span>IS</span>
+      <span>AWESOME</span>
+      <div tabindex="0" id="animatedElement"></div>
+    </div>
+    <div class="nabthat">
+      <hr />
+      <p>nabthat</p>
+      <hr />
+    </div>
+
+    <button id="show-menu">POKAŻ <i class="fa-solid fa-chevron-up"></i></button>
   </footer>
+  <div id="menu">
+    <button class="menu-button" (click)="resetData()">
+      <i class="fa-solid fa-chevron-right"></i>ZRESETUJ USTAWIENIA
+    </button>
+    <button class="menu-button" (click)="showPersonalData()">
+      <i class="fa-solid fa-chevron-right"></i>POKAŻ DANE OSOBOWE
+    </button>
+  </div>
 </div>

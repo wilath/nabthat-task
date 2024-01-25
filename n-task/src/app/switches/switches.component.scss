@@ -11,12 +11,8 @@ h3{
     align-items: center;
     justify-content: center;
     gap:2.5em;
-    .button:hover{
-        background-color: rgba(232, 131, 1, 1);
-        background-image: linear-gradient(270deg, rgba(232, 131, 1, 1) 18%, rgba(146, 89, 18, 1) 100%);
-        transition: all 0.25s linear;
-        
-    }
+    
+    
     .button{
         cursor: pointer;
         font-family: 'Open Sans', sans-serif;
@@ -30,6 +26,14 @@ h3{
         border: 1px solid white;
         padding: 0;
         margin: 0;
+        &:focus,
+        &:hover{
+            background-color: rgba(232, 131, 1, 1);
+            background-image: linear-gradient(270deg, rgba(232, 131, 1, 1) 18%, rgba(146, 89, 18, 1) 100%);
+            transition: all 0.25s linear;
+            outline: none;
+            
+        }
     }
 }
 span{

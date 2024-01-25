@@ -1,4 +1,5 @@
 import { Component, Input } from '@angular/core';
+import { Content } from '../shared/content.model';
 
 @Component({
   selector: 'app-output',
@@ -6,5 +7,5 @@ import { Component, Input } from '@angular/core';
   styleUrl: './output.component.scss',
 })
 export class OutputComponent {
-  @Input() data: string[] = ['a','b'];
+  @Input() data: Array<Content> = []
 }

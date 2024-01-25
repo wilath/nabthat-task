@@ -5,7 +5,9 @@ import { BrowserModule } from '@angular/platform-browser';
 import { RadiosComponent } from './radios/radios.component';
 import { SwitchesComponent } from './switches/switches.component';
 import { OutputComponent } from './output/output.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { EditComponent } from './edit/edit.component';
+import { AlphabetSortPipe } from './shared/alphabet-sort.pipe';
 
 
 
@@ -15,12 +17,11 @@ import { FormsModule } from '@angular/forms';
     RadiosComponent,
     SwitchesComponent,
     OutputComponent,
+    EditComponent,
+    AlphabetSortPipe,
+    
   ],
-  imports: [
-    CommonModule,
-    BrowserModule,
-    FormsModule],
+  imports: [CommonModule, BrowserModule, FormsModule, ReactiveFormsModule],
   bootstrap: [AppComponent],
-  
 })
 export class AppModule {}
