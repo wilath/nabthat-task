@@ -1,23 +1,14 @@
-h3{
-    align-self: center;
+.display {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  
+  p {
     text-align: center;
-    white-space: nowrap; 
-    overflow: hidden; 
-    text-overflow: ellipsis;
-    width: calc(100% - 3rem);
+    color: rgb(139, 143, 155);
+    margin: var(--distance);
     margin-top: 0;
-    margin-bottom: var(--distance);
-}
-.display{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
-    p {
-        text-align: center;
-        color: rgb(139, 143, 155);
-        margin: var(--distance);
-        margin-top: 0;
-    }
+  }
 }

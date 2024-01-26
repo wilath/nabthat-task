@@ -5,15 +5,15 @@
       ><div class="logo"><i class="fa-brands fa-html5"></i></div
     ></a>
     <div class="header-text">
-      <h2 id="task">Zadanie <span>rekrutacyjne</span></h2>
-      <h2 id="name">Daniel Redzyński</h2>
+      <h2 [ngClass]="{'show-personal-data': isPersonalDataShown}">Zadanie <span>rekrutacyjne</span></h2>
+      <h2 [ngClass]="{'show-personal-data': isPersonalDataShown}">Daniel Redzyński</h2>
     </div>
-    <button id="goEdit" (click)="showEdit()">
+    <button id="goEdit" (click)="showEditMenu()">
       {{ isEdit ? "Close" : "Edit" }}
     </button>
   </header>
   <section class="edit">
-    <app-edit (change)="handleChange($event)" ></app-edit>
+    <app-edit (change)=" handleChangeFromEdit($event)" ></app-edit>
   </section>
 
   <section class="title">
@@ -21,9 +21,9 @@
     <hr />
   </section>
   <section class="main">
-    <app-radios (radio)="receiveRadio($event)"></app-radios>
-    <app-switches (switch)="receiveSwitch($event)"></app-switches>
-    <app-output [data]="output"></app-output>
+    <app-radios class="main-child" (radio)="receiveRadio($event)"></app-radios>
+    <app-switches class="main-child" (switch)="receiveSwitch($event)"></app-switches>
+    <app-output class="main-child" [data]="output"></app-output>
   </section>
 
   <footer>
@@ -45,7 +45,7 @@
     <button class="menu-button" (click)="resetData()">
       <i class="fa-solid fa-chevron-right"></i>ZRESETUJ USTAWIENIA
     </button>
-    <button class="menu-button" (click)="showPersonalData()">
+    <button class="menu-button" (click)="this.isPersonalDataShown = true">
       <i class="fa-solid fa-chevron-right"></i>POKAŻ DANE OSOBOWE
     </button>
   </div>

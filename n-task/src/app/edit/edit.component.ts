@@ -1,6 +1,12 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Content } from '../shared/content.model';
-import { FormArray, FormBuilder, FormControl, FormGroup } from '@angular/forms';
+import {
+  FormArray,
+  FormBuilder,
+  FormControl,
+  FormGroup,
+  Validators,
+} from '@angular/forms';
 
 @Component({
   selector: 'app-edit',
@@ -10,17 +16,19 @@ import { FormArray, FormBuilder, FormControl, FormGroup } from '@angular/forms';
 export class EditComponent implements OnInit {
   constructor(private fb: FormBuilder) {}
 
-  public data: Array<Content> = JSON.parse(
-    localStorage.getItem('data') || '[]'
-  );
+  public data: Array<Content> = [];
+
   public editContent!: FormGroup;
+
   public editIndex: number = 0;
-  @Output() change = new EventEmitter<number>
-  
+
+  @Output() change = new EventEmitter<number>();
+
   ngOnInit(): void {
+    this.data = JSON.parse(localStorage.getItem('data') || '[]');
     this.initializeForm();
-    this.getId(0)
   }
+
   private initializeForm() {
     let name = '';
     let text = '';
@@ -29,26 +37,17 @@ export class EditComponent implements OnInit {
       text = this.data[this.editIndex - 1].value;
     }
     this.editContent = this.fb.group({
-      title: name,
-      value: text,
+      title: [name, Validators.required],
+      value: [text, Validators.required],
     });
-    
   }
 
-   getId(id: number) {
-    this.editIndex = id;
-    const butts = document.getElementsByClassName(
-      'cb'
-    ) as HTMLCollectionOf<HTMLButtonElement>;
-    for (let i = 0; i < butts.length; i++) {
-      butts[i].style.backgroundColor = 'transparent';
-      butts[i].style.backgroundImage = 'none';
-    }
-    butts[id].style.backgroundColor = 'rgba(232, 131, 1, 1)';
-    butts[id].style.backgroundImage =
-      'linear-gradient(270deg, rgba(232, 131, 1, 1) 18%, rgba(146, 89, 18, 1) 100%)';
+  public onItemInput(event: Event) {
+    const target = event.target as HTMLInputElement;
+    this.editIndex = parseInt(target.value, 10);
     this.initializeForm();
   }
+
   public onSubmit() {
     const getMaxId = (data: Content[]): number => {
       if (data.length === 0) {
@@ -57,9 +56,7 @@ export class EditComponent implements OnInit {
       return Math.max(...data.map((item) => item.id));
     };
     const newId =
-      this.editIndex === 0
-        ? getMaxId(this.data) + 1
-        : this.editIndex;
+      this.editIndex === 0 ? getMaxId(this.data) + 1 : this.editIndex;
     const newContent: Content = {
       id: newId,
       title: this.editContent.value.title,
@@ -79,23 +76,26 @@ export class EditComponent implements OnInit {
         alert('Element do edycji nie został znaleziony w tablicy.');
       }
     }
-    this.pushChanges(newData)
-    this.editContent.reset()
+    this.pushChanges(newData);
+    this.editContent.reset();
+    this.editIndex = 0;
   }
-  public deleteContent(){
-    const newData = this.data.filter(item => item.id !== this.editIndex);
-    this.pushChanges(newData)
-    this.editContent.reset()
+
+  public deleteContent() {
+    const newData = this.data.filter((item) => item.id !== this.editIndex);
+    this.pushChanges(newData);
+    this.editContent.reset();
+    this.editIndex = 0;
   }
-  private pushChanges(change: Content[]){
-    this.data = change,
-    localStorage.setItem('data', JSON.stringify(change))
-    this.change.emit(this.editIndex)
-    this.getId(0)
+
+  private pushChanges(change: Content[]) {
+    this.data = change;
+    localStorage.setItem('data', JSON.stringify(change));
+    this.change.emit(this.editIndex);
   }
-  public resetEdit(){
-    this.data = JSON.parse(
-      localStorage.getItem('data') || '[]'
-    );
+
+  public resetEdit() {
+    this.data = JSON.parse(localStorage.getItem('data') || '[]');
+    this.editIndex = 0;
   }
 }

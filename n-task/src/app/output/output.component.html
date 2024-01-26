@@ -1,7 +1,11 @@
-<h3>BLOK Z DŁUGĄ NAZWĄ KTÓRA SAMA SIĘ PRZYTNIE DO ODPOWIEDNIEJ SZEROKOŚCI ABY BYŁO ŁADNIE</h3>
+<h3>
+  BLOK Z DŁUGĄ NAZWĄ KTÓRA SAMA SIĘ PRZYTNIE DO ODPOWIEDNIEJ SZEROKOŚCI ABY BYŁO
+  ŁADNIE
+</h3>
 <div class="display">
-    <p *ngFor="let item of data | alphabetSort">{{item.value}}</p>
-    <p *ngIf="data.length < 1">Lista jest pusta</p>
+
+  <p *ngFor="let item of data | alphabetSort">{{ item.value }}</p>
+
+  <p *ngIf="data.length < 1">Lista jest pusta</p>
+  
 </div>
-
-

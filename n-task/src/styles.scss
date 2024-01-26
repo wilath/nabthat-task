@@ -1,22 +1,42 @@
-:root{
-    --light-grey: rgb(42,45,54);
-    --dark-grey: rgb(11,12,16);
-    --footer-grey: rgb(21,22,26);
-    --html-grey: rgb(48,48,48);
-    --my-orange: rgb(232,131,1);
-    --distance: calc(clamp(1.375rem, 2.879vw + 0.295rem, 3.75rem));
+@import "../src/app/styles/reset.scss";
+@import "../src/app/styles/variables.scss";
+@import "../src/app/styles/breakpoints.scss";
+@import "../src/app/styles/buttons.scss";
+@import "../src/app/styles/radios.scss";
+@import "../src/app/styles/menu-from-footer.scss";
+@import "../src/app/styles/awesome-square.scss";
 
-}
 
-body{
-    background-color: var(--light-grey);
-    margin: 0;
-    padding: 0;
-    color: white;
-    font-family: 'Open Sans', sans-serif;
-    font-weight: 300;
-    
+body {
+  background-color: var(--light-grey);
+  margin: 0;
+  padding: 0;
+  color: white;
+  font-family: "Open Sans", sans-serif;
+  font-weight: 300;
 }
-a{
-    text-decoration: none;
+a {
+  text-decoration: none;
+}
+h3 {
+  margin-bottom: var(--distance);
+  margin-top: 0;
+  font-size: 1.3rem;
+  text-align: center;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  width: calc(100% - var(--distance));
+  font-weight: 600;
+  
+}
+.main-child {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  max-width: 33.33%;
+  overflow: hidden;
+  margin-top: var(--distance);
 }
