@@ -14,7 +14,7 @@ export class AppComponent implements OnInit {
 
   constructor(private applicationDataService: ApplicationDataService, private http: HttpClient) {}
 
-  private startingData: Book[] = [{id:1, title:'test',description: 'test'}]
+  private startingData: Book[] = []
 
   public radioOption = RadioOption.firstOption;
 

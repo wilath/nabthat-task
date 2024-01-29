@@ -1,13 +1,13 @@
 
   header {
     position: sticky;
+    top: 0;
     background-color: var(--dark-grey);
     height: 140px;
     display: flex;
     align-items: center;
     justify-content: space-between;
     z-index: 3;
-
     @media(max-width: 960px){
       height: 100px;
     }
