@@ -12,7 +12,7 @@
     </div>
 
     <button id="goEdit" (click)="isEdit = !isEdit">
-      {{ isEdit ? "Close" : "Edit" }}
+      {{ isEdit ? "Zamknij" : "Edycja" }}
     </button>
 
   </header>
@@ -55,10 +55,10 @@
   </footer>
   <div id="menu">
     <button class="menu-button" (click)="resetData()">
-      <i class="fa-solid fa-chevron-right"></i>ZRESETUJ USTAWIENIA
+      <i class="fa-solid fa-chevron-right"></i> ZRESETUJ USTAWIENIA
     </button>
     <button class="menu-button" (click)="this.isPersonalDataShown = true">
-      <i class="fa-solid fa-chevron-right"></i>POKAŻ DANE OSOBOWE
+      <i class="fa-solid fa-chevron-right"></i> POKAŻ DANE OSOBOWE
     </button>
   </div>
 </div>

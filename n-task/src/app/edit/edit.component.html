@@ -14,7 +14,7 @@
           [value]="0"
         />
         <label for="0"
-          ><span><i class="fa-solid fa-plus"></i></span> Add new Content</label
+          ><span><i class="fa-solid fa-plus"></i></span> Dodaj nową książkę</label
         >
         <ng-container *ngFor="let book of books">
           <input
@@ -33,12 +33,12 @@
 
       <div class="content-editor">
         <div class="content-element">
-          <label for="title">Title:</label>
+          <label for="title">Tytuł:</label>
           <input id="title" type="text" formControlName="title" />
         </div>
 
         <div class="content-element content-description">
-          <label for="content">Content:</label>
+          <label for="content">Opis:</label>
           <textarea id="content" formControlName="description"></textarea>
         </div>
       </div>
@@ -50,7 +50,7 @@
         type="submit"
         [disabled]="editBookForm.invalid"
       >
-        {{ isNewBook ? "ADD" : "SAVE" }}
+        {{ isNewBook ? "DODAJ" : "ZAPISZ" }}
       </button>
       <button
         class="button-alpha"
@@ -58,7 +58,7 @@
         type="submit"
         [disabled]="isNewBook"
       >
-        DELETE
+        USUŃ
       </button>
     </div>
   </form>
