@@ -1,6 +1,5 @@
 @import "../src/app/styles/reset.scss";
 @import "../src/app/styles/variables.scss";
-@import "../src/app/styles/breakpoints.scss";
 @import "../src/app/styles/buttons.scss";
 @import "../src/app/styles/radios.scss";
 @import "../src/app/styles/menu-from-footer.scss";
@@ -15,21 +14,41 @@ body {
   font-family: "Open Sans", sans-serif;
   font-weight: 300;
 }
+
 a {
   text-decoration: none;
+  color: white;
+  &:focus-visible{
+    outline: none;
+  }
+  &:focus-visible > :nth-child(1){
+    background-color: var(--my-orange);
+    outline: auto;
+  }
 }
+
+h1 {
+  font-size: 3rem;
+  text-shadow: 2px 1px 2px rgba(18, 18, 18, 1);
+
+  @media(max-width: 960px) {
+    font-size: 1.5rem;
+  }
+}
+
 h3 {
-  margin-bottom: var(--distance);
-  margin-top: 0;
-  font-size: 1.3rem;
-  text-align: center;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  width: calc(100% - var(--distance));
   font-weight: 600;
-  
+  font-size: 1.3rem;
+
+  @media (max-width: 960px){
+    font-size: 1rem
+  }
 }
+
+strong {
+  font-weight: 600;
+}
+
 .main-child {
   flex-grow: 1;
   display: flex;

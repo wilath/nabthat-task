@@ -1,0 +1,7 @@
+<h3 class="block-header">BLOK Z DŁUGĄ NAZWĄ KTÓRA SAMA SIĘ PRZYTNIE DO ODPOWIEDNIEJ SZEROKOŚCI ABY BYŁO ŁADNIE</h3>
+<div class="block-container">
+  <ng-container *ngIf="books != null">
+    <p *ngFor="let item of books | alphabetSort">{{ item.description }}</p>
+  </ng-container>
+  <p *ngIf="books == null || books.length < 1">Lista jest pusta</p>
+</div>

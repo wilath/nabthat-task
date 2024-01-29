@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 
 @Component({
   selector: 'app-switches',
@@ -6,10 +6,14 @@ import { Component, EventEmitter, Output } from '@angular/core';
   styleUrl: './switches.component.scss',
 })
 export class SwitchesComponent {
-  @Output() switch = new EventEmitter<string>();
+  @Output() appendButtonClick = new EventEmitter<void>();
+  @Output() changeButtonClick = new EventEmitter<void>();
 
-  public switchChange(event: Event) {
-    const target = event.target as HTMLButtonElement;
-    this.switch.emit(target.value);
+  public onAppendButtonClick() {
+    this.appendButtonClick.emit();
+  }
+
+  public onChangeButtonClick() {
+    this.changeButtonClick.emit();
   }
 }

@@ -1,176 +1,142 @@
-import { Component, ElementRef, OnInit, Renderer2, ViewChild } from '@angular/core';
-import { Content } from './shared/content.model';
-import { EditComponent } from './edit/edit.component';
-import { startData } from './shared/startingData';
+import { Component, OnInit } from '@angular/core';
+import { ApplicationDataService } from './services/application-data.service';
+import { Observable } from 'rxjs';
+import { Book } from './shared/book.model';
+import { RadioOption } from './shared/radio-option-enum';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrl: './app.component.scss',
+  styleUrl: './app.component.scss'
 })
 export class AppComponent implements OnInit {
-  
-  constructor(private renderer: Renderer2, private el: ElementRef){}
 
-  private startingData: Array<Content> = startData
+  constructor(private applicationDataService: ApplicationDataService, private http: HttpClient) {}
 
-  public title = 'nabthat-task';
+  private startingData: Book[] = [];
 
-  private radioOption: string = '';
+  public radioOption = RadioOption.firstOption;
 
-  private switchOption: string = '';
+  public books$: Observable<Book[]> = this.applicationDataService.books$;
 
-  public output: Array<Content> = [];
+  public displayedBooks$: Observable<Book[]> = this.applicationDataService.displayedBooks$;
 
   public isEdit: boolean = false;
 
   public isPersonalDataShown: boolean = false;
 
-  @ViewChild(EditComponent) editComponent: EditComponent | undefined;
-  
-  resizeObserver = new ResizeObserver(this.handleSizeChange);
-
-  
-
-  ngOnInit(): void {
-    if (!localStorage.getItem('data')) {
-      localStorage.setItem('data', JSON.stringify(this.startingData));
-    }
-    if (localStorage.getItem('output')) {
-      this.output = JSON.parse(localStorage.getItem('output') || '[]');
-    }
-    this.animSquare();
+  public ngOnInit(): void {
+    this.loadJSON()
+    this.initData();
   }
-  private addData() {
-    let nStorage: Content[] = JSON.parse(localStorage.getItem('data') || '[]');
-    let nOutput: Content[] = JSON.parse(localStorage.getItem('output') || '[]');
 
-    const isElementInOutput = (el: Content) => {
-      return nOutput.some((item) => item.id === el.id);
-    };
-    const getRandomElement = () => {
-      const randIndex = Math.floor(Math.random() * nStorage.length);
-      return nStorage.splice(randIndex, 1)[0];
-    };
-    const insertElement = (el: Content) => {
-      if (this.switchOption === 'switch1' && nOutput.length > 0) {
-        nOutput[nOutput.length - 1] = el;
-      } else {
-        nOutput.push(el);
-      }
-      this.output = nOutput;
-      localStorage.setItem('output', JSON.stringify(nOutput));
-    };
-    if (nStorage.length !== nOutput.length) {
-      switch (this.radioOption) {
-        case 'option0':
-          const el0 = nStorage[0];
-          if (!isElementInOutput(el0)) {
-            insertElement(el0);
-          } else {
-            alert('Ten Element Już jest na liście');
-          }
-          break;
-        case 'option1':
-          const el1 = nStorage[1];
-          if (!isElementInOutput(el1)) {
-            insertElement(el1);
-          } else {
-            alert('Ten Element Już jest na liście');
-          }
-          break;
-        case 'option2':
-          let randElement = getRandomElement();
-          while (nOutput.some((item) => item.id === randElement.id)) {
-            randElement = getRandomElement();
-          }
-
-          insertElement(randElement);
-          break;
-        default:
-          alert('Wybierz Opcję');
-          break;
-      }
-    } else {
-      alert('Nie ma nowych tekstów');
-    }
+  private loadJSON() {
+    const JSONurl = '/assets/starting-data.json'
+    this.http.get(JSONurl).subscribe( json => this.startingData = json as Book[])
   }
-  public handleChangeFromEdit(id: number) {
-    const data: Content[] = JSON.parse(localStorage.getItem('data') || '[]');
-    const changedItem = data.find((item) => item.id === id);
-    if (changedItem) {
-      this.output = this.output.map((item) =>
-        item.id === id ? { ...changedItem } : item
-      );
-    } else {
-      const newOutput = this.output.filter((item) => item.id !== id);
-      localStorage.setItem('output', JSON.stringify(newOutput));
-      this.output = newOutput;
-      
-    }
-  }
-  public showEditMenu() {
-    this.isEdit = !this.isEdit;
-    const editSection = this.el.nativeElement.querySelector('.edit') as HTMLElement;
-    const titleSection = this.el.nativeElement.querySelector('.title') as HTMLElement;
 
-    const height = editSection.getBoundingClientRect().height.toString().substring(0, 3);
+  public onAppendButtonClick() {
+    if (this.applicationDataService.displayedBooks.length === this.applicationDataService.books.length) {
+      alert('Nie ma nowych książek do dodania');
+      return;
+    }
 
-    this.renderer.setStyle(editSection, 'top', this.isEdit ? '140px' : '-100%');
-    this.renderer.setStyle(titleSection, 'marginTop', this.isEdit ? `${height}px` : '0px');
-    
-    if(this.isEdit){
-      this.resizeObserver.observe(editSection);
-    } else {
-      this.resizeObserver.disconnect();
+    let option = this.getBookBasedOnChosenRadioOption();
+
+    if (this.applicationDataService.displayedBooks.find(el => el.id == option.id)) {
+      alert('Ta książka już istnieje w bloku trzecim')
+      return;
     }
-   
-    
+
+    this.applicationDataService.setDisplayedBooks([...this.applicationDataService.displayedBooks, option]);
   }
-  private handleSizeChange(entries: ResizeObserverEntry[]) {
-     const titleSection = document.querySelector('.title') as HTMLElement;
-    for (const entry of entries) {
-      titleSection.style.marginTop = `${entry.contentRect.height}px` 
+
+  public onChangeButtonClick() {
+    let option = this.getBookBasedOnChosenRadioOption();
+
+    this.applicationDataService.setDisplayedBooks([option]);
+  }
+
+  public handleEditBook(newBook: Book) {
+    const currentBooks = this.applicationDataService.books;
+
+    const isNewBook = newBook.id === 0;
+    if (isNewBook) {
+      this.addBook(currentBooks, newBook);
+
+      return;
     }
+
+    this.updateBooks(currentBooks, newBook);
+  }
+
+  public handleDeleteBook(bookId: number) {
+    const newBooks = this.applicationDataService.books.filter(book => book.id !== bookId);
+    this.applicationDataService.setBooks(newBooks)
+    this.checkIfOutputHasBookAndDelete(bookId)
   }
 
   public resetData() {
-    localStorage.setItem('data', JSON.stringify(this.startingData));
-    localStorage.removeItem('output');
-    this.output = [];
-    document.querySelector('form')!.reset()
+    this.applicationDataService.setBooks(this.startingData);
+    this.applicationDataService.setDisplayedBooks([]);
     this.isPersonalDataShown = false;
-    if (this.editComponent) {
-      this.editComponent!.resetEdit();
+  }
+
+  private getBookBasedOnChosenRadioOption() {
+    return this.radioOption == RadioOption.randomOption
+      ? this.getRandomNotChosenBook()
+      : this.applicationDataService.books[+this.radioOption];
+  }
+
+  private updateBooks(currentBooks: Book[], newBook: Book) {
+    const newBooks = currentBooks.map(book => book.id === newBook.id ? book = newBook : book);
+
+    this.applicationDataService.setBooks(newBooks);
+    this.checkIfOutputHasBookAndEdit(newBook);
+  }
+
+  private addBook(currentBooks: Book[], newBook: Book) {
+    const newId = currentBooks.length > 0 ? currentBooks.sort(b => b.id)[currentBooks.length - 1].id + 1 : 1;
+
+    this.applicationDataService.setBooks([...currentBooks, { ...newBook, id: newId }]);
+  }
+
+  private getRandomNotChosenBook() {
+    const chosenBooksIds = this.applicationDataService.displayedBooks.map(el => el.id)
+    const notChosenBooks = this.applicationDataService.books.filter(item => !chosenBooksIds.includes(item.id))
+
+    return notChosenBooks[Math.floor(Math.random() * notChosenBooks.length)]
+  }
+
+  private initData() {
+    setTimeout(() => {
+      if (this.applicationDataService.books == null) {
+        this.applicationDataService.setBooks(this.startingData);
+      }
+
+      if (this.applicationDataService.displayedBooks == null) {
+        this.applicationDataService.setDisplayedBooks([]);
+      }
+    });
+  }
+
+  private checkIfOutputHasBookAndDelete(bookId: number) {
+    const currentDisplayedBooks = this.applicationDataService.displayedBooks;
+
+    if (currentDisplayedBooks.map(el => el.id).includes(bookId)) {
+      const newOutput = currentDisplayedBooks.filter(book => book.id !== bookId);
+      this.applicationDataService.setDisplayedBooks(newOutput);
     }
-
   }
 
-  public receiveRadio(event: string) {
-    this.radioOption = event;
-  }
+  private checkIfOutputHasBookAndEdit(newBook: Book) {
+    const currentDisplayedBooks = this.applicationDataService.displayedBooks
 
-  public receiveSwitch(event: string) {
-    this.switchOption = event;
-    this.addData();
-  }
-
-  /* JS for square animation */
-  private animSquare() {
-    const animatedElement = document.getElementById('animatedElement');
-    if (animatedElement) {
-      animatedElement.addEventListener('mouseenter', () => {
-        animatedElement.classList.add('animation');
-      });
-      animatedElement.addEventListener('focus', () => {
-        animatedElement.classList.add('animation');
-      });
-
-      animatedElement.addEventListener('animationend', (event) => {
-        if (event.animationName.slice(-8) === 'jumpAnim') {
-          animatedElement.classList.remove('animation');
-        }
-      });
+    if (currentDisplayedBooks.map(el => el.id).includes(newBook.id)) {
+      const newOutput = currentDisplayedBooks.map(book => book.id === newBook.id ? newBook : book)
+      this.applicationDataService.setDisplayedBooks(newOutput)
     }
   }
 }
+

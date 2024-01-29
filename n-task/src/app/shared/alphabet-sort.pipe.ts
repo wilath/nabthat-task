@@ -1,21 +1,21 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { Content } from './content.model';
+import { Book } from './book.model';
 
 @Pipe({
   name: 'alphabetSort',
 })
 export class AlphabetSortPipe implements PipeTransform {
 
- 
-    transform(items: Content[] | null ): Content[] | null   {
+
+    transform(items: Book[] | null ): Book[] | null   {
       if (!items) {
         return null;
       }
-  
+
       return items.sort((a, b) => {
-        const valueA = a.value.toUpperCase();
-        const valueB = b.value.toUpperCase();
-  
+        const valueA = a.description.toUpperCase();
+        const valueB = b.description.toUpperCase();
+
         if (valueA < valueB) {
           return -1;
         } else if (valueA > valueB) {

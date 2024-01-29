@@ -1,45 +1,19 @@
-<h3>BLOK PIERWSZY</h3>
-<form >
-  
-  <label
-    tabindex="0"
-    (keydown.enter)="onEnterKey($event, 'option0')"
-    for="option0"
-    class="radio-button"
-  >
-    <input
-      type="radio"
-      value="option0"
-      id="option0"
-      name="option"
-      (change)="onRadioChange($event)" />Opcja pierwsza<span></span
-  ></label>
+<h3 class="block-header">BLOK PIERWSZY</h3>
+<div class="block-container">
+  <form>
+    <label for="option0" class="radio radio-container">
+      <input type="radio" [value]="radioOption.firstOption" id="option0" name="option" [(ngModel)]="option" (change)="onRadioChange()" />Opcja pierwsza
+      <span class="checkmark"></span>
+    </label>
 
-  <label
-    tabindex="0"
-    (keydown.enter)="onEnterKey($event, 'option1')"
-    for="option1"
-    class="radio-button"
-  >
-    <input
-      type="radio"
-      value="option1"
-      id="option1"
-      name="option"
-      (change)="onRadioChange($event)" />Opcja druga<span></span
-  ></label>
+    <label for="option1" class="radio radio-container">
+      <input type="radio" [value]="radioOption.secondOption" id="option1" name="option" [(ngModel)]="option" (change)="onRadioChange()" />Opcja druga
+      <span class="checkmark"></span>
+    </label>
 
-  <label
-    tabindex="0"
-    (keydown.enter)="onEnterKey($event, 'option2')"
-    for="option2"
-    class="radio-button"
-  >
-    <input
-      type="radio"
-      value="option2"
-      id="option2"
-      name="option"
-      (change)="onRadioChange($event)" />Opcja losowa<span></span
-  ></label>
-</form>
+    <label for="option2" class="radio radio-container">
+      <input type="radio" [value]="radioOption.randomOption" id="option2" name="option" [(ngModel)]="option" (change)="onRadioChange()" />Opcja losowa
+      <span class="checkmark"></span>
+    </label>
+  </form>
+</div>

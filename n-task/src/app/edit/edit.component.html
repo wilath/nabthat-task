@@ -1,43 +1,65 @@
 <div class="edit-wrapper">
-  <h3>BLOK EDYCJI</h3>
-  <div class="content-list">
-    <div class="content-buttons radio-group-edit">
-      <form >
-
-      <input type="radio" name="choose-edit" id="0" value=0 (change)="onItemInput($event)">
-      <label  for=0><span><i class="fa-solid fa-plus"></i></span> Add new Content</label>
-               
-      <ng-container *ngFor="let item of data,">
-        <input  type="radio" [id]="item.id" name="choose-edit" [value]="item.id" (change)="onItemInput($event)">
-        <label  [for]="item.id"><span>{{item.id}}</span>{{item.title}}</label>
-      </ng-container>
-      
-    </form>
-  </div>
-
-    <form
-      class="content-editor"
-      [formGroup]="editContent"
-      (ngSubmit)="onSubmit()"
-    >
-      <div class="content-element">
-
-        <label for="title">Title:</label>
-        <input id="title" type="text" formControlName="title" />
-
+  <h3 class="block-header">BLOK EDYCJI</h3>
+  <form
+    [formGroup]="editBookForm"
+    (ngSubmit)="onSubmit($event.submitter.id === 'submit-delete')"
+  >
+    <div class="content-list">
+      <div class="radio-group-edit content-buttons">
+        <input
+          type="radio"
+          formControlName="chosenBook"
+          name="chosenBook"
+          id="0"
+          [value]="0"
+        />
+        <label for="0"
+          ><span><i class="fa-solid fa-plus"></i></span> Add new Content</label
+        >
+        <ng-container *ngFor="let book of books">
+          <input
+            type="radio"
+            [id]="book.id"
+            formControlName="chosenBook"
+            name="chosenBook"
+            [value]="book.id"
+          />
+          <label [for]="book.id"
+            ><span>{{ book.id }}</span
+            >{{ book.title }}</label
+          >
+        </ng-container>
       </div>
 
-      <div style="flex-grow: 2" class="content-element">
+      <div class="content-editor">
+        <div class="content-element">
+          <label for="title">Title:</label>
+          <input id="title" type="text" formControlName="title" />
+        </div>
 
-        <label for="content">Content:</label
-        ><textarea id="content" formControlName="value"></textarea>
-
+        <div class="content-element content-description">
+          <label for="content">Content:</label>
+          <textarea id="content" formControlName="description"></textarea>
+        </div>
       </div>
-      <div class="final-buttons">
-
-        <button class="button-alpha" type="submit">{{editIndex === 0 ? 'ADD' : 'SAVE'}}</button>
-        <button class="button-alpha" (click)="deleteContent()" *ngIf="editIndex !== 0" type="button">DELETE</button></div>
-
-    </form>
-  </div>
+    </div>
+    <div class="final-buttons">
+      <button
+        class="button-alpha"
+        id="submit-form"
+        type="submit"
+        [disabled]="editBookForm.invalid"
+      >
+        {{ isNewBook ? "ADD" : "SAVE" }}
+      </button>
+      <button
+        class="button-alpha"
+        id="submit-delete"
+        type="submit"
+        [disabled]="isNewBook"
+      >
+        DELETE
+      </button>
+    </div>
+  </form>
 </div>

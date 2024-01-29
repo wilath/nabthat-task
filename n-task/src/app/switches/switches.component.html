@@ -1,10 +1,11 @@
-<h3>BLOK DRUGI</h3>
-<div class="buttons">
-  <button class="button-alpha" value="switch1" (click)="switchChange($event)">
-    ZASTĄP
-  </button>
-
-  <button class="button-alpha" value="switch2" (click)="switchChange($event)">
-    DOKLEJ
-  </button>
+<h3 class="block-header">BLOK DRUGI</h3>
+<div class="block-container">
+  <div class="buttons">
+    <button class="button-alpha" (click)="onChangeButtonClick()">
+      ZASTĄP
+    </button>
+    <button  class="button-alpha" (click)="onAppendButtonClick()">
+      DOKLEJ
+    </button>
+  </div>
 </div>

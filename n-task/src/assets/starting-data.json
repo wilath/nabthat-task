@@ -1,0 +1,37 @@
+[
+    {
+        "id": 1,
+        "description": "Hobbit czyli tam i z powrotem, to powieść fantasy napisana przez J.R.R. Tolkiena. Opowiada o podróży Bilba Bagginsa, hobbita, który wbrew swojej woli zostaje wciągnięty w epicką wyprawę. Gandalf, czarodziej, wybiera Bilba, aby towarzyszył grupie krasnoludów pod wodzą Thorina Oakenshielda w misji odzyskania ich ojczyzny i skarbu strzeżonego przez smoka Smauga. W trakcie podróży Bilbo spotyka różne magiczne istoty, takie jak trolle, elfy i gobliny. Odkrywa również magiczny pierścień, który później odegra istotną rolę w szerszym legendarium Tolkiena. \"Hobbit\" jest znany ze swojej pełnej przygód narracji, bogatego tworzenia świata i tematów odwagi, przyjaźni i podróży bohatera.",
+        "title": "The Hobbit"
+    },
+    {
+        "id": 2,
+        "description": "Opowieść toczy się pomiędzy punktami widzenia Kaladina, Shallan Davar, Szetha-syna-syna-Vallano, Dalinara Kholina, Adolina Kholina i kilku innych pomniejszych postaci, które prowadzą pozornie niepowiązane życie. Szeth, „Kłamca” z Shinovaru, wygnany przez swój lud i skazany na posłuszeństwo swoim ciągle zmieniającym się panom, zostaje wysłany, by zamordować króla jednego z najpotężniejszych narodów świata, Alethkaru. Wraz z rozwojem fabuły nieustannie zmienia swoich panów, starając się ukryć fakt, że posiada Ostrze Honoru, mityczne ostrze używane przez Heroldów, które może przeciąć każdy materiał. Posiada również dostęp do mocy, które nie są już dostępne dla zwykłych ludzi (tzw. Wiązanie Mocy), które niegdyś posiadali Świetliści Rycerze, wojownicy, którzy byli uważani za zaginionych, co czyniło go niezwykle trudnym do pokonania w walce.",
+        "title": "Droga królów"
+    },
+    {
+        "id": 3,
+        "description": "Akcja powieści dzieje się w bardzo dalekiej przyszłości. Najważniejszą planetą we wszechświecie stała się Arrakis, jedyna, na której znajdują się złoża melanżu, substancji przedłużającej życie, a także umożliwiającej jasnowidzenie niezbędne do uniknięcia niebezpieczeństw ponadwymiarowych podróży kosmicznych. Powstawanie melanżu związane jest z cyklem rozwojowym czerwi pustyni, olbrzymich istot, żyjących w piaskach Arrakis.",
+        "title": "Diuna"
+    },
+    {
+        "id": 4,
+        "description": "Miecz przeznaczenia to drugi tom sagi o wiedźminie, napisanej przez polskiego autora fantasy, Andrzeja Sapkowskiego. W tej książce główny bohater, Geralt z Rivii, wiedźmin o nadludzkich zdolnościach, kontynuuje swoje przygody. Geralt zostaje wplątany w polityczne intrygi, walki o władzę i tajemnice związane z istotami nadprzyrodzonymi.",
+        "title": "Miecz przeznaczenia"
+    },
+    {
+        "id": 5,
+        "description": "Silmarillion to monumentalna praca J.R.R. Tolkiena, będąca zbiorem mitów, historii i legend, które stanowią tło dla wydarzeń opisanych w \"Hobbita\" i \"Władcy Pierścieni\". Książka jest dziełem post-mortem, zebranym i wydanym przez syna autora, Christophera Tolkiena. Silmarillion przedstawia mitologię Śródziemia, opowiadając historię od stworzenia świata aż po zakończenie Wojny Gniewu. Skupia się na losach różnych ras, bohaterów i przeciwników, ukazując wielowątkową historię walki dobra ze złem, tła dla późniejszych wydarzeń w powieściach Tolkiena.",
+        "title": "Silmarillion"
+    },
+    {
+        "id": 6,
+        "description": "\"Endymion\" to druga część cyklu science fiction autorstwa Dana Simmonsa. Książka kontynuuje historię rozpoczętą w \"Hiperionie\" i jest poprzedzona przez \"Rise of Endymion\". \"Endymion\" skupia się na postaci Raula Endymiona, młodego chłopaka, który zostaje wplątany w złożoną intrygę obejmującą zarówno politykę galaktyczną, jak i tajemnice technologii obcych. W powieści śledzimy losy Raula, który zostaje wybrany do roli opiekuna Aenei, tajemniczej dziewczynki obdarzonej zdolnościami paranormalnymi. Razem wyruszają w podróż przez kosmos, starając się uchronić przed prześladowcami. Książka wplata wątki z poprzednich części cyklu, rozwijając jednocześnie nowe tropy i zagadki.",
+        "title": "Endymion"
+    },
+    {
+        "id": 7,
+        "description": "\"Anioły i demony\" to thriller autorstwa Dana Browna, który jest prequelem do jego słynnego bestsellera \"Kod Leonarda da Vinci\". Głównym bohaterem jest profesor Robert Langdon, ekspert w dziedzinie symboliki religijnej. Książka rozpoczyna się od brutalnego morderstwa naukowca z CERN-u, którego ciało zostaje znalezione z tajemniczym symbolem na klatce piersiowej.",
+        "title": "Anioły i Demony"
+    }
+]

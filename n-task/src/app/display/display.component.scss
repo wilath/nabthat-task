@@ -1,0 +1,30 @@
+.block-container {
+  margin-top: 4rem;
+
+  @media(max-width: 960px){
+    margin-top: 1.8rem;
+  }
+}
+.block-header{
+  width: 0;
+  min-width: 100%;
+  text-overflow: ellipsis;
+  text-wrap: nowrap;
+  overflow: hidden;
+  text-align: center;
+
+  @media(max-width: 960px){
+    margin-top: 1.8rem;
+  }
+}
+
+p {
+  text-align: center;
+  color: rgb(139, 143, 155);
+  padding-bottom: 1rem;
+
+  @media(max-width: 960px){
+    font-size:  0.8rem;
+
+  }
+}
