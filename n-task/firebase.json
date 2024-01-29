@@ -1,0 +1,10 @@
+{
+  "hosting": {
+    "public": "dist/n-task/browser",
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**"
+    ]
+  }
+}

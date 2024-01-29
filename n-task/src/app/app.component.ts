@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ApplicationDataService } from './services/application-data.service';
-import { Observable } from 'rxjs';
+import { Observable, take } from 'rxjs';
 import { Book } from './shared/book.model';
 import { RadioOption } from './shared/radio-option-enum';
 import { HttpClient } from '@angular/common/http';
@@ -14,7 +14,7 @@ export class AppComponent implements OnInit {
 
   constructor(private applicationDataService: ApplicationDataService, private http: HttpClient) {}
 
-  private startingData: Book[] = [];
+  private startingData: Book[] = [{id:1, title:'test',description: 'test'}]
 
   public radioOption = RadioOption.firstOption;
 
@@ -28,12 +28,6 @@ export class AppComponent implements OnInit {
 
   public ngOnInit(): void {
     this.loadJSON()
-    this.initData();
-  }
-
-  private loadJSON() {
-    const JSONurl = '/assets/starting-data.json'
-    this.http.get(JSONurl).subscribe( json => this.startingData = json as Book[])
   }
 
   public onAppendButtonClick() {
@@ -107,6 +101,15 @@ export class AppComponent implements OnInit {
     const notChosenBooks = this.applicationDataService.books.filter(item => !chosenBooksIds.includes(item.id))
 
     return notChosenBooks[Math.floor(Math.random() * notChosenBooks.length)]
+  }
+
+  private loadJSON() {
+    const JSONurl = '/assets/starting-data.json'
+
+    this.http.get(JSONurl).subscribe( data => {
+      this.startingData = data as Book[];
+      this.initData();
+    })
   }
 
   private initData() {
