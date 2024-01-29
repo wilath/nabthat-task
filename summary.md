@@ -16,6 +16,7 @@
 -Logiczne wykorzystanie jednostek rem, em, vh, vw (w efekcie jak najmniejsze użycie jednostki px) - w taki sposób by w efekcie responsywność spełniona została jak najmniejszą ilością kodu.
 
 -Mobile first.
+
 -Doklejając treść sprawić by w ostatnim bloku treści były posortowane alfabetycznie.
 
 -Przy doklejaniu treści w przypadku niemożliwości spełnienia warunku by była unikalna wyświetlić stosowny komunikat (np. alert/dialog/modal).
