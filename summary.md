@@ -1,3 +1,11 @@
+# Opis :
+
+-Apliacja została umieszczona na hostingu Google Firebase (https://nabthat-task.web.app).
+
+-Jako przedstawiane treści użyłem książki wraz ze streszczeniem, aby edycja i ogólny kod był bardziej przejrzysty.
+
+-Do zarządzania stanem aplikacji stworzyłem reaktywny localStorage z użyciem biblioteki Ngx WebStorage (https://www.npmjs.com/package/ngx-webstorage), implementacja znaduje się w serwisie application-data.service.ts.
+LocalStorage przechowuje listę wszystkich książek, oraz listę książek wyświetlonych w bloku trzecim. Zmiany w edycji wpływają na książki już wyświetlone w bloku trzecim.
 
 # Nieukończone główne cele :
 
